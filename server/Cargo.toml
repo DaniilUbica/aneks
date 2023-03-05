@@ -9,3 +9,6 @@ edition = "2021"
 sqlite = "*"
 lettre = "0.10.2"
 rand = "*"
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+chrono = "*"
+regex = "1"

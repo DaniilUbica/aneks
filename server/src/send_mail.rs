@@ -18,10 +18,10 @@ pub mod send_mail {
         let email = Message::builder()
         .from("Aneks <sender@gmail.com>".parse().unwrap())
         .to(format!("<{to}>").parse().unwrap())
-        .body(String::from(format!("Message:\n {text}")))
+        .body(String::from(text))
         .unwrap();
 
-        let creds = Credentials::new("acveloff@gmail.com".to_string(), "nfwjozsgslxcqfjg".to_string());
+        let creds = Credentials::new("sender@gmail.com".to_string(), "pass".to_string());
 
         let mailer = SmtpTransport::relay("smtp.gmail.com")
             .unwrap()

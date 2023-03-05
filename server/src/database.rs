@@ -8,7 +8,7 @@ pub mod database {
 
     pub fn create_table(table_name: &str, columns: Vec<&str>) {
         
-        let column_names: String = columns.into_iter().collect(); // name TEXT, age INT, sirname TEXT
+        let column_names: String = columns.into_iter().collect();
 
         let query = format!("CREATE TABLE IF NOT EXISTS {table_name}({column_names})");
 
@@ -35,7 +35,7 @@ pub mod database {
 
         connection
         .iterate(query, |pairs| {
-            for &(name, value) in pairs.iter() {
+            for &(_name, value) in pairs.iter() {
                 let s = format!("{}", value.unwrap());
                 answer.push(s);
             }
@@ -44,5 +44,30 @@ pub mod database {
         .unwrap();
 
         answer
+    }
+
+    pub fn get_emails() -> Vec<String> {
+
+        let mut answer: Vec<String> = Vec::new();
+
+        let query = format!("SELECT DISTINCT email FROM {TABLE_NAME}");
+
+        let connection = connect_to_db();
+
+        connection
+        .iterate(query, |pairs| {
+            for &(_name, value) in pairs.iter() {
+                let s = format!("{}", value.unwrap());
+                answer.push(s);
+            }
+            true
+        })
+        .unwrap();
+
+        answer
+    }
+
+    pub fn get_table_name() -> &'static str {
+        TABLE_NAME
     }
 }

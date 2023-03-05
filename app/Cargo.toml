@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 fltk = "*"
 rand = "*"
+regex = "1"
+reqwest = { version = "0.11", features = ["blocking", "json"] }

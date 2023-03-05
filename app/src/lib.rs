@@ -1,6 +1,12 @@
 use rand::Rng;
 use std::{net::TcpStream, io::Write};
 
+pub fn get_anek() -> String {
+    let text = reqwest::blocking::get("http://rzhunemogu.ru/RandJSON.aspx?CType=1").unwrap().text().unwrap();
+
+    String::from(&text[12..&text.len()-2])
+}
+
 pub fn generate_code(length: i32) -> String {
     let chars = "QWERTYUIOPASDFGHJKLZXCVBNM";
     let mut code = String::new();
